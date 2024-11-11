@@ -10,7 +10,7 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 sono stati individuati.
 ------------------------------------------------------------------------------------------------ */
 const randomNumbers = document.getElementById("numbers-list");
-
+const message = document.getElementById("message");
 // Countdown 
 
 let seconds = 2;
@@ -46,23 +46,13 @@ sendAnswer.addEventListener("submit", function (event) {
         userNumbers.push(parseInt(input));
         console.log(userNumbers)
     } for (let i = 0; i < answer.length; i++) {
-    if (inputs.includes(answer[i])) {
+    if (userNumbers.includes(answer[i])) {
         counter++;
-        numbersGuessed.push(inputs[i]);
+        numbersGuessed.push(answer[i]);
     }
-    console.log(counter);
-    console.log(numbersGuessed);
+    message.innerHTML = (`Hai indovinato ${counter} numeri(${numbersGuessed.join(", ")})`);
     }
-
 })
-
-
-
-
-
-
-
-
 
 
 /* FUNZIONI */
@@ -78,13 +68,12 @@ function createGuess(index) {
         //
         const rand = randNumGen(1, 50)
         liEl.innerHTML = rand;
-        console.log(rand);
         //
         randomNumbers.appendChild(liEl);
         //
         numbersToGuess.push(rand);
         console.log(numbersToGuess);
-    }
+    } 
 
     return numbersToGuess;
 }
