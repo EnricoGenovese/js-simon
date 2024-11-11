@@ -46,11 +46,11 @@ sendAnswer.addEventListener("submit", function (event) {
         userNumbers.push(parseInt(input));
         console.log(userNumbers)
     } for (let i = 0; i < answer.length; i++) {
-    if (userNumbers.includes(answer[i])) {
-        counter++;
-        numbersGuessed.push(answer[i]);
-    }
-    message.innerHTML = (`Hai indovinato ${counter} numeri(${numbersGuessed.join(", ")})`);
+        if (userNumbers.includes(answer[i])) {
+            counter++;
+            numbersGuessed.push(answer[i]);
+        }
+        message.innerHTML = (`Hai indovinato ${counter} numeri(${numbersGuessed.join(", ")})`);
     }
 })
 
@@ -62,22 +62,37 @@ sendAnswer.addEventListener("submit", function (event) {
 
 function createGuess(index) {
     let numbersToGuess = [];
-    for (let i = 0; i < index; i++) {
+
+    // iteration N volte
+    while (numbersToGuess.length < index) {
+        const rand = randNumGen(1, 50)
         const liEl = document.createElement("li");
         //
-        const rand = randNumGen(1, 50)
         liEl.innerHTML = rand;
         //
         randomNumbers.appendChild(liEl);
         //
-        
-        if(!numbersToGuess.includes(rand[i])) {
-            numbersToGuess.push(rand);
-            console.log(numbersToGuess);
+        numbersToGuess.push(rand);
+        //
+        let notDup = []
+        numbersToGuess.forEach((rand) => {
+            if (!numbersToGuess.includes(rand)) {
+            notDup.push();
+            console.log(notDup);
         }
-    }
-    return numbersToGuess;
+        })
+    }   return notDup;
 }
 
-let answer = createGuess(5)
+let answer = createGuess(5);
+
+// // iterazione stabilita
+// for (let i = 0; i < index; i++) {
+
+//     if(!numbersToGuess.includes(rand)) {
+//         numbersToGuess.push(rand);
+//         console.log(numbersToGuess);
+//     }
+// }
+// 
 
