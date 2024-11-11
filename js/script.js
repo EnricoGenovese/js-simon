@@ -10,3 +10,27 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 sono stati individuati.
 ------------------------------------------------------------------------------------------------ */
 
+// Variabli da elementi HTML
+
+const randomNumbers = document.getElementById("numbers-list");
+
+const sendAnswer = document.getElementById("answer-form");
+
+// Array vuoti per i numeri generati, le risposte dell'utente e i numeri indovinati;
+
+let numbersToGuess = [];
+let userNumbers= [];
+let numbersGuessed = [];
+
+// Countdown 
+
+let seconds = 10;
+const timer = setInterval(function () {
+    if(seconds > 1) {
+     countdown.innerHTML = --seconds;
+    } else {
+        countdown.innerHTML = "Inserisci i numeri di Simon"
+        instructions.innerHTML = "";
+        clearInterval(timer);
+    }
+}, 1000);
