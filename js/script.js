@@ -24,25 +24,24 @@ let numbersGuessed = [];
 
 // Countdown 
 
-let seconds = 2;
+let seconds = 10;
 const timer = setInterval(function () {
     if (seconds > 1) {
         countdown.innerHTML = --seconds;
     } else {
         countdown.innerHTML = "Inserisci i numeri di Simon"
         instructions.innerHTML = "";
-        // randomNumbers.innerHTML = "";
-        // sendAnswer.classList.toggle("d-none")
+        randomNumbers.innerHTML = "";
+        sendAnswer.classList.toggle("d-none")
         clearInterval(timer);
     }
 }, 1000);
 
 // Funzione per creare i <li> che conterranno i numeri casuali
 
-function createGuess(iteratror) {
-    
+function createGuess(index) {
     let numbersToGuess = [];
-    for (let i = 0; i < iteratror; i++) {
+    for (let i = 0; i < index; i++) {
         const guess = document.createElement("li");
         numbersToGuess.push(randNumGen(1, 50));
         guess.innerHTML = numbersToGuess[i];
@@ -51,3 +50,6 @@ function createGuess(iteratror) {
 }
 
 createGuess(5)
+
+
+// 
