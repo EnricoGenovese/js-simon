@@ -14,23 +14,40 @@ sono stati individuati.
 
 const randomNumbers = document.getElementById("numbers-list");
 
-const sendAnswer = document.getElementById("answer-form");
+const sendAnswer = document.getElementById("answers-form");
 
 // Array vuoti per i numeri generati, le risposte dell'utente e i numeri indovinati;
 
-let numbersToGuess = [];
-let userNumbers= [];
+
+let userNumbers = [];
 let numbersGuessed = [];
 
 // Countdown 
 
-let seconds = 10;
+let seconds = 2;
 const timer = setInterval(function () {
-    if(seconds > 1) {
-     countdown.innerHTML = --seconds;
+    if (seconds > 1) {
+        countdown.innerHTML = --seconds;
     } else {
         countdown.innerHTML = "Inserisci i numeri di Simon"
         instructions.innerHTML = "";
+        // randomNumbers.innerHTML = "";
+        // sendAnswer.classList.toggle("d-none")
         clearInterval(timer);
     }
 }, 1000);
+
+// Funzione per creare i <li> che conterranno i numeri casuali
+
+function createGuess(iteratror) {
+    
+    let numbersToGuess = [];
+    for (let i = 0; i < iteratror; i++) {
+        const guess = document.createElement("li");
+        numbersToGuess.push(randNumGen(1, 50));
+        guess.innerHTML = numbersToGuess[i];
+        randomNumbers.appendChild(guess)
+    }
+}
+
+createGuess(5)
