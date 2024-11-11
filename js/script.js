@@ -13,7 +13,7 @@ const randomNumbers = document.getElementById("numbers-list");
 const message = document.getElementById("message");
 // Countdown 
 
-let seconds = 2;
+let seconds = 10;
 const timer = setInterval(function () {
     if (seconds > 1) {
         countdown.innerHTML = seconds--;
@@ -60,7 +60,6 @@ sendAnswer.addEventListener("submit", function (event) {
 // Funzione per creare i <li> che conterranno i numeri casuali
 
 
-
 function createGuess(index) {
     let numbersToGuess = [];
     for (let i = 0; i < index; i++) {
@@ -71,10 +70,12 @@ function createGuess(index) {
         //
         randomNumbers.appendChild(liEl);
         //
-        numbersToGuess.push(rand);
-        console.log(numbersToGuess);
-    } 
-
+        
+        if(!numbersToGuess.includes(rand[i])) {
+            numbersToGuess.push(rand);
+            console.log(numbersToGuess);
+        }
+    }
     return numbersToGuess;
 }
 
