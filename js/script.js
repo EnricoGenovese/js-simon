@@ -9,8 +9,10 @@ che ha visto precedentemente, nell'ordine che preferisce.
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare 
 sono stati individuati.
 ------------------------------------------------------------------------------------------------ */
+
 const randomNumbers = document.getElementById("numbers-list");
 const message = document.getElementById("message");
+
 // Countdown 
 
 let seconds = 10;
@@ -27,14 +29,15 @@ const timer = setInterval(function () {
 }, 1000);
 
 
-
 // Controllo della corrispondenza dei numeri randomici con i numeri dell'utente;
 // Stampa risultato: quanti numeri indovinati(quali numeri indovinati);
 
-// Array vuoti per i numeri generati, le risposte dell'utente e i numeri indovinati;
+// Elementi HTML per interaginre da JS con la pagina da browser;
 
 const sendAnswer = document.getElementById("answers-form");
 const inputs = document.querySelectorAll("input");
+
+let answer = createGuess(5); // array di numeri random senza ripetizioni creato dalla funzione
 
 sendAnswer.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -45,10 +48,10 @@ sendAnswer.addEventListener("submit", function (event) {
         let input = inputs[i].value;
         userNumbers.push(parseInt(input));
         console.log(userNumbers)
-    } for (let i = 0; i < answer.length; i++) {
-        if (userNumbers.includes(answer[i])) {
+    } for (let k = 0; k < answer.length; k++) {
+        if (userNumbers.includes(answer[k])) {
             counter++;
-            numbersGuessed.push(answer[i]);
+            numbersGuessed.push(answer[k]);
         }
         message.innerHTML = (`Hai indovinato ${counter} numeri(${numbersGuessed.join(", ")})`);
     }
@@ -62,29 +65,20 @@ sendAnswer.addEventListener("submit", function (event) {
 
 function createGuess(index) {
     let numbersToGuess = [];
-
-    // iteration N volte
-    while (numbersToGuess.length < index) {
+    //
+    while (numbersToGuess.length < index) { // iteration N volte
         const rand = randNumGen(1, 50)
-        const liEl = document.createElement("li");
-        //
-        liEl.innerHTML = rand;
-        //
-        randomNumbers.appendChild(liEl);
-        //
-        numbersToGuess.push(rand);
-        //
-        let notDup = []
-        numbersToGuess.forEach((rand) => {
-            if (!numbersToGuess.includes(rand)) {
-            notDup.push();
-            console.log(notDup);
+        if (!numbersToGuess.includes(rand)) {
+            numbersToGuess.push(rand);
+            //
+            const liEl = document.createElement("li");
+            liEl.innerHTML = rand;
+            //
+            randomNumbers.appendChild(liEl);
         }
-        })
-    }   return notDup;
+    }
+    return numbersToGuess;
 }
-
-let answer = createGuess(5);
 
 // // iterazione stabilita
 // for (let i = 0; i < index; i++) {
